@@ -9,18 +9,26 @@ import UnstyledButton from '../UnstyledButton';
 import Icon from '../Icon';
 import VisuallyHidden from '../VisuallyHidden';
 
-import { COLORS } from '../../constants';
+import { WEIGHTS, COLORS } from '../../constants';
 
 const MobileMenu = ({ isOpen, onDismiss }) => {
   return (
     <MenuWrapper isOpen={isOpen} onDismiss={onDismiss}>
       <MenuContent ariaLabel={"Menu"} style={{
-        '--color-gray-300': COLORS.gray[300],
+        '--color-gray-100': COLORS.gray[100],
         '--color-gray-900': COLORS.gray[900],
         '--color-gray-500': COLORS.gray[500],
+        '--color-gray-700': COLORS.gray[700],
         '--color-white': COLORS.white,
+        '--color-secondary': COLORS.secondary,
+        '--font-weight-medium': WEIGHTS.medium,
+        '--font-weight-normal': WEIGHTS.normal,
       }}>
-        <button onClick={onDismiss}>Dismiss menu</button>
+        <ButtonWrapper>
+          <CloseButton onClick={onDismiss}>
+            <Icon id="close" strokeWidth={2} size={24} />
+          </CloseButton>
+        </ButtonWrapper>
         <nav>
           <a href="/sale">Sale</a>
           <a href="/new">New&nbsp;Releases</a>
@@ -39,6 +47,25 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
   );
 };
 
+const ButtonWrapper = styled.div`
+  flex: 1;
+  background: transparent;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const CloseButton = styled.button`
+  background: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const MenuWrapper = styled(DialogOverlay)`
   position: fixed;
   top: 0;
@@ -47,15 +74,14 @@ const MenuWrapper = styled(DialogOverlay)`
   bottom: 0;
   background: hsl(0deg 0% 0% / 0.5);
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 `;
 
 const MenuContent = styled(DialogContent)`
-  position: relative;
   background: var(--color-white);
-  border-radius: 8px;
-  width: 65%;
+  width: 350px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 4px;
@@ -63,26 +89,41 @@ const MenuContent = styled(DialogContent)`
   nav, footer{
     display: flex;
     flex-direction: column;
-    font-weight: bold;
 
     a{
       padding: 4px 8px;
       text-decoration: none;
-      color: var(--color-gray-900);
-      font-size: 1.25rem;
 
       &:hover{
-        background: var(--color-gray-300)};
+        background: var(--color-gray-100)};
       }
     }
   }
 
   nav{
-    border-bottom: 2px solid var(--color-gray-500);
+    font-weight: var(--font-weight-medium);
+
+    a{
+      color: var(--color-gray-900);
+      font-size: ${18/16}rem;
+
+      &:first-of-type {
+        color: var(--color-secondary);
+      }
+    }
   }
 
   footer{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 
+    a{
+      color: var(--color-gray-700);
+      font-size: ${14/16}rem;
+      font-weight: var(--font-weight-normal);
+    }
   }
 `;
 
