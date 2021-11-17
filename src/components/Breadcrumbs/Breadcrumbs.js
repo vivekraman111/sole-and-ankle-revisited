@@ -8,7 +8,11 @@ const Breadcrumbs = ({ children }) => {
 
 Breadcrumbs.Crumb = ({ href, children, delegated }) => {
   return (
-    <CrumbWrapper>
+    <CrumbWrapper style={{
+        '--color-gray-300': COLORS.gray[300],
+        '--color-gray-900': COLORS.gray[900],
+        '--color-gray-700': COLORS.gray[700],
+      }}>
       <CrumbLink href={href} {...delegated}>
         {children}
       </CrumbLink>
@@ -23,17 +27,17 @@ const CrumbWrapper = styled.div`
     &::before {
       content: '/';
       margin-right: 8px;
-      color: ${COLORS.gray[300]};
+      color: var(--color-gray-300)};
     }
   }
 `;
 
 const CrumbLink = styled.a`
-  color: ${COLORS.gray[700]};
+  color: var(--color-gray-700)};
   text-decoration: none;
 
   &:hover {
-    color: ${COLORS.gray[900]};
+    color: var(--color-gray-900)};
   }
 `;
 
