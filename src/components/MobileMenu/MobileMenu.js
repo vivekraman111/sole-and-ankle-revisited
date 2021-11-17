@@ -85,6 +85,8 @@ const MenuContent = styled(DialogContent)`
   display: flex;
   flex-direction: column;
   padding: 4px;
+  padding-left: 16px;
+  padding-bottom: 16px;
 
   nav, footer{
     display: flex;
