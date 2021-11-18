@@ -27,6 +27,7 @@ const MobileMenu = ({ isOpen, onDismiss }) => {
         <ButtonWrapper>
           <CloseButton onClick={onDismiss}>
             <Icon id="close" strokeWidth={2} size={24} />
+            <VisuallyHidden>Dismiss Menu</VisuallyHidden>
           </CloseButton>
         </ButtonWrapper>
         <nav>
@@ -54,7 +55,7 @@ const ButtonWrapper = styled.div`
   justify-content: flex-end;
 `;
 
-const CloseButton = styled.button`
+const CloseButton = styled(UnstyledButton)`
   background: transparent;
   border: none;
   width: 48px;
@@ -64,6 +65,7 @@ const CloseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 16px;
 `;
 
 const MenuWrapper = styled(DialogOverlay)`
@@ -87,6 +89,7 @@ const MenuContent = styled(DialogContent)`
   padding: 4px;
   padding-left: 16px;
   padding-bottom: 16px;
+  overflow: auto;
 
   nav, footer{
     display: flex;

@@ -8,6 +8,8 @@ import MobileMenu from '../MobileMenu';
 import Icon from '../Icon';
 import UnstyledButton from '../UnstyledButton';
 
+import VisuallyHidden from '../VisuallyHidden';
+
 import { QUERIES } from '../../constants';
 
 const Header = () => {
@@ -41,12 +43,15 @@ const Header = () => {
         <MobileNav>
           <UnstyledButton>
             <Icon id="shopping-bag" strokeWidth={2} size={26} />
+            <VisuallyHidden>Open Cart</VisuallyHidden>
           </UnstyledButton>
           <UnstyledButton>
             <Icon id="search" strokeWidth={2} size={26} />
+            <VisuallyHidden>Search</VisuallyHidden>
           </UnstyledButton>
           <UnstyledButton onClick={() => setShowMobileMenu(!showMobileMenu)}>
             <Icon id="menu" strokeWidth={2} size={26} />
+            <VisuallyHidden>Open Menu</VisuallyHidden>
           </UnstyledButton>
         </MobileNav>
         <Side />
@@ -73,11 +78,15 @@ const MainHeader = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+
+  @media ${QUERIES.phoneAndDown} {
+    padding: 18px 16px;
+  }
 `;
 
 const Nav = styled.nav`
   display: flex;
-  gap: clamp(2.5rem, 16vw - 7rem, 6rem);
+  gap: clamp(2.5rem, 6.86vw - 1.57rem, 4rem);
   margin: 0px 48px;
 
   @media ${QUERIES.tabletAndDown} {
@@ -87,11 +96,15 @@ const Nav = styled.nav`
 
 const MobileNav = styled.nav`
   display: none;
-  gap: 48px;
   margin: 0px;
 
   @media ${QUERIES.tabletAndDown} {
     display: flex;
+    gap: 48px;
+  }
+
+  @media ${QUERIES.phoneAndDown} {
+    gap: 32px;
   }
 `;
 
@@ -99,6 +112,10 @@ const Side = styled.div`
   flex: 1;
 
   @media ${QUERIES.tabletAndDown} {
+    &:nth-of-type(1){
+      flex: revert;
+    }
+
     &:nth-of-type(2){
       display: none;
     }
